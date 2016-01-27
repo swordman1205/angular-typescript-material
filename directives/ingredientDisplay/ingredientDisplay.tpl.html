@@ -1,0 +1,37 @@
+<div class="ingredient-display-directive">
+    <div ng-if="IngredientDisplayController.display.valid" layout="column">
+        <div>
+            <span class="unit-amounts"
+                  ng-repeat="unitAmount in IngredientDisplayController.display.unitAmounts track by $index">
+                <span class="amount" ng-bind-html="unitAmount.amount"></span>
+                <span class="unit" ng-bind-html="unitAmount.unit"></span>
+            </span>
+            <span class="ingredient">
+                <a ng-if="IngredientDisplayController.linkIngredient && !IngredientDisplayController.recipeIngredient.recipeId"
+                   ng-bind="IngredientDisplayController.display.ingredientName"
+                   ui-sref="app.admin.ingredients.ingredient({id:IngredientDisplayController.display.ingredient.ingredientId})">
+                </a>
+                <span ng-if="!IngredientDisplayController.linkIngredient && !IngredientDisplayController.recipeIngredient.recipeId"
+                      ng-bind="IngredientDisplayController.display.ingredientName">
+                </span>
+                <a ng-if="IngredientDisplayController.recipeIngredient.recipeId"
+                   ng-bind="IngredientDisplayController.display.ingredientName"
+                   ng-click="IngredientDisplayController.goToRecipe()">
+                </a>
+            </span>
+            <span class="approx-medium"
+                  ng-if="IngredientDisplayController.showApproxMediumCounts && IngredientDisplayController.display.approxMedium > 0">
+                (approx. {{ IngredientDisplayController.display.approxMedium }} medium)
+            </span>
+        </div>
+        <span class="ingredient-description"
+              ng-if="IngredientDisplayController.includeDescription && IngredientDisplayController.recipeIngredient._pivot.description"
+              ng-bind="IngredientDisplayController.recipeIngredient._pivot.description">
+        </span>
+    </div>
+    <div ng-if="!IngredientDisplayController.display.valid">
+        N/A
+    </div>
+    <span ng-if="IngredientDisplayController.display.length > 0" ng-bind-html="IngredientDisplayController.display">
+    </span>
+</div>

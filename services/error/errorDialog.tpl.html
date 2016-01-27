@@ -1,0 +1,20 @@
+<md-dialog flex="50" id="errorDialog" layout-padding>
+    <md-dialog-content>
+        <h2>
+            <md-icon>error</md-icon>
+        </h2>
+        <h2>
+            Whoops, looks like something went wrong
+        </h2>
+        <!-- Will display first paragraph if extra == null -->
+        <p ng-if="ErrorDialogController.extra.response.status != 403">Sorry, there's been a small issue with your
+            request. We've informed the tech boffins. You can probably continue on, but if your problem persists, try
+            reloading the page.</p>
+        <p ng-if="ErrorDialogController.extra.response.status == 403">Sorry, you don't have permission to view this
+            item.</p>
+    </md-dialog-content>
+
+    <md-dialog-actions>
+        <md-button ng-click="ErrorDialogController.cancelErrorDialog()">OK</md-button>
+    </md-dialog-actions>
+</md-dialog>

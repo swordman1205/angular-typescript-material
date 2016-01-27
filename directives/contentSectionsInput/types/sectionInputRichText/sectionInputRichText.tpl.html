@@ -1,0 +1,14 @@
+<ng-form class="section-input-rich-text" name="SectionInputRichTextController.richTextForm">
+
+    <md-input-container class="md-block">
+
+        <markdown-editor
+                ng-model="SectionInputRichTextController.section.content.body"
+                spell-checker="true"
+                localizable-input="SectionInputRichTextController.section._localizations"
+                localizable-input-path="content.body"
+        ></markdown-editor>
+
+    </md-input-container>
+
+</ng-form>

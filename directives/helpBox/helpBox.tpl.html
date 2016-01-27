@@ -1,0 +1,28 @@
+<div class="program-subheader help-bar" layout="row" ng-if="HelpBoxController.display">
+    <md-icon class="question" md-font-set="iqs-icons icon-question"></md-icon>
+    <span>Help</span>
+    <md-button class="close" aria-label="Close" ng-click="HelpBoxController.display = !HelpBoxController.display">
+        <md-icon md-font-set="iqs-icons icon-close"></md-icon>
+    </md-button>
+    <div class="mask-for-help"></div>
+</div>
+<div class="help-box" ng-class="{'slide-up': !HelpBoxController.display, 'slide-down': HelpBoxController.display}">
+    <div>
+        <p>
+            <strong>Having some trouble or got a curly question?</strong><br/>
+            You can talk to us via our Live Chat or find the answer in our <a href="http://help.iquitsugar.com" target="_blank">Help Desk</a>. We'll be happy to help!
+        </p>
+        <p>
+            <strong>Looking for some help mixing up your meals, wanting snack ideas or have a question about the Program?</strong><br/>
+            Check out our Guides that we've made just for you.
+        </p>
+    </div>
+    <div>
+        <p>
+            <strong>If you can't find the answer, post a Question in the Community.</strong><br/>
+            Our community of members, Experts and Ambassadors are online 24/7!<br/>
+            You can also contact us privately if you wish.<br/>
+            Please head over to our <a href="http://help.iquitsugar.com" target="_blank">Support Portal</a> and get in contact with us directly.
+        </p>
+    </div>
+</div>

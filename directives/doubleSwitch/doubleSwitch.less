@@ -1,0 +1,31 @@
+@import (reference) "../../../styles/theme/reference/admin-variables";
+
+double-switch {
+
+    label {
+        line-height: 30px;
+        margin: 16px 0;
+
+        &.active {
+            font-weight: bold;
+        }
+    }
+
+    md-switch {
+
+        > ._md-container {
+            margin-left: 8px;
+        }
+
+        &.md-checked {
+
+            ._md-bar {
+                background-color: @background-500 !important;
+            }
+
+            ._md-thumb {
+                background-color: @background-50 !important;
+            }
+        }
+    }
+}

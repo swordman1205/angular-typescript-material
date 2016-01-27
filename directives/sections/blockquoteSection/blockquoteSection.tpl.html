@@ -1,0 +1,17 @@
+<blockquote class="blockquote-section" cite="{{BlockquoteSectionController.section.content.author}}">
+
+    <p class="comment">
+        <md-icon class="material-icons former">format_quote</md-icon>
+        {{::BlockquoteSectionController.section.content.body}}
+        <md-icon class="material-icons latter">format_quote</md-icon>
+    </p>
+    <p class="attribution" ng-if="BlockquoteSectionController.section.content.author">
+        &mdash; {{BlockquoteSectionController.section.content.author}}
+
+        <md-button href="#" class="tweet" target="_blank"> <!-- @todo find out what should happen -->
+            <md-icon md-font-set="iqs-icons icon-twitter"></md-icon>
+            TWEET
+        </md-button>
+    </p>
+
+</blockquote>

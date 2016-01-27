@@ -1,0 +1,82 @@
+@import (reference) "../../../../styles/_mixins.less";
+@import (reference) "../../../../styles/theme/reference/program-variables";
+
+section.recipe-info-bar-section {
+    overflow: auto;
+    background-color: #ffffff;
+
+    .responsive(1199px, { margin: 0 -24px; });
+
+    > div {
+
+        &:first-child {
+            border-left: 1px solid @clr-iqs-badge;
+        }
+
+        box-sizing: border-box;
+        border-top: 1px solid @clr-iqs-badge;
+        border-bottom: 1px solid @clr-iqs-badge;
+        border-right: 1px solid @clr-iqs-badge;
+        float: left;
+        height: 70px;
+        width: 25%;
+
+        .sugar-cube:before {
+            font-size: 15px;
+        }
+
+        .responsive(599px, {
+            width: 50%; height: 45px;
+            border-bottom: none;
+
+            &:nth-last-child(-n+2) {
+                border-bottom: 1px solid @clr-iqs-badge;
+            }
+        });
+
+        ul {
+            padding: 0;
+            margin: 0;
+
+            li {
+                list-style: none;
+                font-size: 13px;
+                color: @clr-iqs-purple;
+                font-family: @font-lora;
+
+                md-icon.iqs-icons {
+                    color: @clr-iqs-purple;
+                    font-size: 14px;
+
+                    &.orange {
+                        color: @clr-iqs-orange;
+                        font-size: 18px;
+                    }
+                }
+
+                md-icon.material-icons {
+                    color: @clr-iqs-purple;
+                    font-size: 18px;
+                    width: 16px;
+                    height: 16px;
+                    margin-top: -5px;
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        h5 {
+            font-size: 13px;
+            color: @clr-iqs-purple;
+            font-family: @font-lora;
+            margin: 0;
+            font-weight: lighter;
+            .responsive(599px, { margin-left: 5px; });
+
+            &.orange {
+                color: @clr-iqs-orange;
+                font-weight: bold;
+            }
+        }
+    }
+}

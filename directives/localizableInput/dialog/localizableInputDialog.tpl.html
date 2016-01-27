@@ -1,0 +1,44 @@
+<md-dialog id="localizableInputDialog" aria-label="Localizable Ingredient Dialog" class="standard-dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Translate</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="LocalizableInputDialogController.cancelDialog()"
+                       aria-label="Close">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content class="has-tabs">
+        <div class="apply-padding" ng-bind-html="LocalizableInputDialogController.originalValue"></div>
+        <md-divider></md-divider>
+        <md-tabs md-selected="LocalizableInputDialogController.selectedIndex" md-dynamic-height md-border-bottom
+                 md-autoselect>
+            <md-tab label="{{region.name}}"
+                    ng-repeat="region in LocalizableInputDialogController.regionService.supportedRegions">
+
+                <md-input-container class="md-block" ng-switch="LocalizableInputDialogController.inputNodeName">
+                    <textarea aria-label="Add localisation for {{region.name}}" ng-switch-when="textarea"
+                              ng-model="LocalizableInputDialogController.localizationMap[region.code]"></textarea>
+                    <input aria-label="Add localisation for {{region.name}}" ng-switch-when="input"
+                           ng-model="LocalizableInputDialogController.localizationMap[region.code]">
+                    <markdown-editor aria-label="Add localisation for {{region.name}}" ng-switch-when="markdown-editor"
+                                     ng-model="LocalizableInputDialogController.localizationMap[region.code]"></markdown-editor>
+                </md-input-container>
+                <md-button class="md-raised md-icon-button" aria-label="Copy From Original"
+                           ng-click="LocalizableInputDialogController.copyFromOriginal(region.code)">
+                    <md-icon>content_copy</md-icon>
+                </md-button>
+
+            </md-tab>
+        </md-tabs>
+
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" layout-align="end center">
+        <md-button ng-click="LocalizableInputDialogController.saveLocalizations()" class="md-accent md-raised"
+                   aria-label="Save">Save
+        </md-button>
+        <md-button ng-click="LocalizableInputDialogController.cancelDialog()" aria-label="Cancel">Cancel</md-button>
+    </md-dialog-actions>
+</md-dialog>

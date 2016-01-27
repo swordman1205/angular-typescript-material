@@ -1,0 +1,29 @@
+<div ng-if="!MediaImageController.addOnlyMode" class="media-image">
+    <div ng-class="{'no-image':!currentImage}" class="image-wrapper" layout="column" layout-align="center center">
+
+        <cl-image
+                ng-if="!!currentImage"
+                public-id="{{currentImage.imageId}}"
+                format="{{currentImage.format}}">
+            <cl-transformation height="300" width="600" crop="fill" gravity="north"/>
+        </cl-image>
+
+    <span layout="row" class="button-group">
+        <md-button class="md-icon-button md-primary md-whiteframe-z1"
+                   ng-click="MediaImageController.promptMediaImageDialog('upload')">
+            <md-icon>photo_camera</md-icon>
+        </md-button>
+
+        <md-button class="md-icon-button md-primary md-whiteframe-z1"
+                   ng-click="MediaImageController.promptMediaImageDialog('select')">
+            <md-icon>cloud_download</md-icon>
+        </md-button>
+    </span>
+
+    </div>
+</div>
+<md-button ng-if="MediaImageController.addOnlyMode" aria-label="Add Media" id="add-button"
+           ng-click="MediaImageController.promptMediaImageDialog('upload')" class="md-accent md-fab">
+    <md-icon>add</md-icon>
+    <md-tooltip>Add media</md-tooltip>
+</md-button>

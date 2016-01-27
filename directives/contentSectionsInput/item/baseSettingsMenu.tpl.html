@@ -1,0 +1,59 @@
+<md-bottom-sheet layout="column" ng-cloak>
+    <h3>Layout Settings</h3>
+    <ng-form name="settingsForm" layout="row">
+
+        <md-input-container class="md-block">
+            <label>Alignment</label>
+            <md-select ng-model="SettingsSheetController.section.format.alignment" name="alignment"
+                       aria-label="Alignment" placeholder="Select section alignment" required="true">
+                <md-option ng-value="alignmentOption.key"
+                           ng-repeat="alignmentOption in SettingsSheetController.formattingOptions.alignment"
+                           ng-bind-html="alignmentOption.name"></md-option>
+            </md-select>
+            <ng-messages for="settingsForm.alignment.$error">
+                <ng-message when="required">Alignment is required</ng-message>
+            </ng-messages>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>Width</label>
+            <md-select ng-model="SettingsSheetController.section.format.size" name="size" aria-label="Size"
+                       placeholder="Select section width" required="true">
+                <md-option ng-value="sizeOption.key"
+                           ng-repeat="sizeOption in SettingsSheetController.formattingOptions.size"
+                           ng-bind-html="sizeOption.name"></md-option>
+            </md-select>
+            <ng-messages for="settingsForm.size.$error">
+                <ng-message when="required">Size is required</ng-message>
+            </ng-messages>
+        </md-input-container>
+
+        <md-input-container class="md-block" ng-if="!!SettingsSheetController.formattingOptions.height">
+            <label>Height</label>
+            <md-select ng-model="SettingsSheetController.section.format.height" name="height" aria-label="Height"
+                       placeholder="Select section height" required="true">
+                <md-option ng-value="heightOption.key"
+                           ng-repeat="heightOption in SettingsSheetController.formattingOptions.height"
+                           ng-bind-html="heightOption.name"></md-option>
+            </md-select>
+            <ng-messages for="settingsForm.height.$error">
+                <ng-message when="required">Height is required</ng-message>
+            </ng-messages>
+        </md-input-container>
+
+        <md-input-container class="md-block" ng-if="!!SettingsSheetController.formattingOptions.style">
+            <label>Style</label>
+            <md-select ng-model="SettingsSheetController.section.format.style" name="style" aria-label="Style"
+                       placeholder="Select section style" required="true">
+                <md-option ng-value="styleOption.key"
+                           ng-repeat="styleOption in SettingsSheetController.formattingOptions.style"
+                           ng-bind-html="styleOption.name"></md-option>
+            </md-select>
+            <ng-messages for="settingsForm.style.$error">
+                <ng-message when="required">Style is required</ng-message>
+            </ng-messages>
+        </md-input-container>
+
+    </ng-form>
+
+</md-bottom-sheet>

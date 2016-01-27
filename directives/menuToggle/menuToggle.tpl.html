@@ -1,0 +1,53 @@
+<div class="menu-toggle" ng-class="{collapsed:collapsed, expanded:open}">
+    <md-list-item
+            ng-click="toggle()"
+            aria-controls="docs-menu-{{navigationState.name}}"
+            aria-expanded="{{open}}"
+            ng-class="{'child-selected':isChildSelected(navigationState.name)}"
+    >
+
+        <md-icon>{{navigationState.data.icon}}</md-icon>
+        <p ng-if="!collapsed" class="md-subhead">{{navigationState.data.title}}</p>
+        <md-tooltip class="admin-nav" md-direction="right" ng-if="collapsed">{{navigationState.data.title |
+            uppercase}}
+        </md-tooltip>
+
+        <span class="md-toggle-icon"
+              ng-class="{'toggled' : open}">
+            <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+        </span>
+    </md-list-item>
+
+    <md-list>
+
+        <div ng-repeat-start="state in navigationState.children track by $index" ng-if="$first && open"></div>
+
+        <md-list-item
+                class="child"
+                ng-if="!state.data.navigationItems"
+                ui-sref-active="selected"
+                ui-sref="{{state.name}}">
+
+            <md-icon>{{state.data.icon}}</md-icon>
+            <p ng-if="!collapsed" class="md-body-2">{{state.data.title}}</p>
+            <md-tooltip class="admin-nav" md-direction="right" ng-if="collapsed">{{state.data.title}}</md-tooltip>
+        </md-list-item>
+
+        <md-list-item
+                class="child"
+                ng-if="!!state.data.navigationItems && state.data.navigationItems.length > 0"
+                ng-repeat="navigationItem in state.data.navigationItems"
+                ui-sref="{{state.name}}({{navigationItem.params}})">
+
+            <md-icon>{{navigationItem.icon}}</md-icon>
+            <p ng-if="!collapsed">{{navigationItem.title | uppercase}}</p>
+            <md-tooltip class="admin-nav" md-direction="right" ng-if="collapsed">{{navigationItem.title | uppercase}}
+            </md-tooltip>
+        </md-list-item>
+
+        <div ng-repeat-end ng-if="!$last"></div>
+
+    </md-list>
+
+</div>
+

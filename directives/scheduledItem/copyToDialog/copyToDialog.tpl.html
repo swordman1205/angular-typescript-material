@@ -1,0 +1,45 @@
+<md-dialog aria-label="Copy to Dialog" class="standard-dialog">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row">
+            <h2>Copy to</h2>
+            <span flex></span>
+            <button class="md-icon-button md-button" aria-label="Close"
+                    ng-click="CopyToDialogController.cancelDialog()">
+                <md-icon>close</md-icon>
+            </button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <p>
+            <small>
+                Make this item available in another cycles schedule by copying it there. When the copy is completed, it
+                will be
+                available in the <i>Unscheduled</i> section.
+            </small>
+        </p>
+        <form name="copyToForm">
+            <fieldset>
+                <legend>Cycle</legend>
+                <md-select ng-model="CopyToDialogController.selectedCycle"
+                           placeholder="Select a cycle"
+                           required>
+                    <md-option ng-repeat="cycle in CopyToDialogController.program._cycles"
+                               ng-value="cycle">
+                        {{ cycle.cycleKey }}
+                    </md-option>
+                </md-select>
+            </fieldset>
+        </form>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" layout-align="end center">
+        <div>
+            <md-button class="md-raised md-accent" ng-disabled="copyToForm.$invalid" aria-label="Save"
+                       ng-click="CopyToDialogController.copy()">Copy
+            </md-button>
+        </div>
+        <div>
+            <md-button ng-click="CopyToDialogController.cancelDialog()" aria-label="Cancel">Cancel</md-button>
+        </div>
+    </md-dialog-actions>
+</md-dialog>

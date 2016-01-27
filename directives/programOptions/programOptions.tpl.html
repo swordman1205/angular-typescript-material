@@ -1,0 +1,13 @@
+<div class="program-options-directive" layout-padding layout="column">
+    <div ng-repeat="programOptionType in ProgramOptionsController.sortedProgramOptions track by $index">
+        <h4>{{ programOptionType.type.type | uppercase }}</h4>
+        <div ng-repeat="programOption in programOptionType.programOptions track by $index" layout="row">
+            <span>{{ programOption.programOption.name }}</span>
+            <span flex></span>
+            <md-checkbox ng-model="programOption.selected"
+                         aria-label="Select program options"
+                         ng-change="ProgramOptionsController.programOptionSelected(programOption)">
+            </md-checkbox>
+        </div>
+    </div>
+</div>

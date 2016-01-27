@@ -1,0 +1,16 @@
+<div ng-repeat="section in SectionListingController.sections track by section.sectionId"
+     ng-switch="section.type"
+     class="section-wrap alignment-{{section.format.alignment||'default'}} size-{{section.format.size||'default'}} style-{{section.format.style||'default'}}"
+>
+
+    <div section="section" ng-switch-when="rich_text" rich-text-section></div>
+    <div section="section" ng-switch-when="media" media-section></div>
+    <div section="section" ng-switch-when="blockquote" blockquote-section></div>
+    <div section="section" ng-switch-when="promo" promo-section></div>
+    <div section="section" ng-switch-when="ingredients_directions" recipe-method-display
+         recipe="section.__parentModel"></div>
+    <div section="section" ng-switch-when="recipe_info_bar" recipe-info-bar-section
+         recipe="section.__parentModel"></div>
+
+
+</div>

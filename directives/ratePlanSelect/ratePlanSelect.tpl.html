@@ -1,0 +1,17 @@
+<div layout-padding layout="row"
+     layout-align="center center"
+     class="rate-plan-select-directive"
+     layout-wrap>
+    <rate-plan-display ng-repeat="ratePlan in RatePlanSelectController.ratePlans"
+                       rate-plan="ratePlan"
+                       is-selected="RatePlanSelectController.isSelected(ratePlan)"
+                       display-currency="RatePlanSelectController.displayCurrency"
+                       ng-if="ratePlan.type == RatePlanSelectController.selectedRatePlanType
+                          || RatePlanSelectController.displayAll"
+                       ng-click="RatePlanSelectController.selectRatePlan(ratePlan)"
+                       analytics-on="click"
+                       analytics-event="Change rate plan"
+                       analytics-label="{{ ::ratePlan.ratePlanName }}"
+                       analytics-category="Checkout">
+    </rate-plan-display>
+</div>

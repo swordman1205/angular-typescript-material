@@ -1,0 +1,38 @@
+<div class="user-country-select-directive">
+    <form name="UserCountrySelectController.directiveForm">
+        <md-input-container class="md-block">
+            <label>Country</label>
+            <md-select ng-model="UserCountrySelectController.user.country"
+                       aria-label="Country"
+                       name="country"
+                       placeholder="Country"
+                       required
+                       ng-change="UserCountrySelectController.countryChanged()">
+                <md-option ng-value="country.countryCode" ng-repeat="country in UserCountrySelectController.countries">
+                    {{ country.countryName }}
+                </md-option>
+            </md-select>
+            <div class="md-errors-spacer"></div>
+            <ng-messages for="UserCountrySelectController.directiveForm.country.$error">
+                <ng-message when="required">Country is required</ng-message>
+            </ng-messages>
+        </md-input-container>
+
+        <md-input-container class="md-block" ng-if="UserCountrySelectController.states.length > 0">
+            <label>State</label>
+            <md-select ng-model="UserCountrySelectController.user.state"
+                       aria-label="State" name="state"
+                       placeholder="State"
+                       required
+                       ng-change="UserCountrySelectController.userChanged()">
+                <md-option ng-value="state.code" ng-repeat="state in UserCountrySelectController.states">{{
+                    state.name }}
+                </md-option>
+            </md-select>
+            <div class="md-errors-spacer"></div>
+            <ng-messages for="UserCountrySelectController.directiveForm.state.$error">
+                <ng-message when="required">State is required</ng-message>
+            </ng-messages>
+        </md-input-container>
+    </form>
+</div>

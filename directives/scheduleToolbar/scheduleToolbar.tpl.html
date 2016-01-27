@@ -1,0 +1,42 @@
+<div layout="row" flex layout-align="start center" class="schedule-toolbar-directive">
+    <md-datepicker ng-model="ScheduleToolbarController.publishedDate">
+    </md-datepicker>
+
+    <md-button class="md-raised" ng-click="ScheduleToolbarController.showTimePicker($event)"
+               aria-label="Show Time Picker">{{ ScheduleToolbarController.entity.published.format('HH:mm') }}
+    </md-button>
+
+    <md-select ng-model="ScheduleToolbarController.selectedCountry"
+               ng-disabled="!ScheduleToolbarController.countries">
+        <md-option ng-repeat="country in ScheduleToolbarController.countries"
+                   ng-value="country">
+            {{ country.countryName }}
+        </md-option>
+    </md-select>
+
+    <md-select ng-model="ScheduleToolbarController.selectedTimezone"
+               ng-disabled="!ScheduleToolbarController.selectedCountry">
+        <md-option ng-repeat="timezone in ScheduleToolbarController.selectedCountry.timezones"
+                   ng-value="timezone">
+            {{ timezone.timezoneIdentifier }} ({{ timezone.displayOffset }})
+        </md-option>
+    </md-select>
+
+    <span flex>
+    </span>
+
+    <label ng-class="{active:!ScheduleToolbarController.entity.draft}">Ready</label>
+    <md-switch ng-model="ScheduleToolbarController.entity.draft"
+               aria-label="Toggle Status"
+               class="md-block">
+    </md-switch>
+    <label ng-class="{active:ScheduleToolbarController.entity.draft}">Draft</label>
+
+    <md-button class="md-icon-button" aria-label="Done" ng-click="ScheduleToolbarController.closeToolbar()">
+        <md-icon>check_circle</md-icon>
+        <md-tooltip md-direction="top">
+            Done
+        </md-tooltip>
+    </md-button>
+
+</div>

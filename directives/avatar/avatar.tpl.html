@@ -1,0 +1,21 @@
+<div ng-click="!AvatarController.canEdit || AvatarController.openAvatarDialog()" class="avatar-directive">
+    <!-- ng-disabled doesn't work on divs -->
+
+    <!--Uploaded Image -->
+    <cl-image ng-if="AvatarController.user.avatarImgId" width="100%" public-id="{{AvatarController.user.avatarImgId}}">
+        <cl-transformation height="{{ AvatarController.height }}" width="{{ AvatarController.width }}" crop="fill"
+                           gravity="north"/>
+    </cl-image>
+
+    <!-- Social -->
+    <img ng-if="AvatarController.user.avatarImgUrl && !AvatarController.user.avatarImgId" ng-src="{{AvatarController.user.avatarImgUrl}}"
+         alt="{{AvatarController.user.fullName}}"/>
+
+    <!-- Placeholder -->
+    <img ng-if="!AvatarController.user.avatarImgUrl && !AvatarController.user.avatarImgId" src="/assets/images/avatar-placeholder.png" alt="avatar-placeholder"/>
+
+    <md-button ng-if="AvatarController.showEditButton" class="edit-button md-primary md-raised">
+        <md-icon class="material-icons">mode_edit</md-icon>
+        Edit
+    </md-button>
+</div>

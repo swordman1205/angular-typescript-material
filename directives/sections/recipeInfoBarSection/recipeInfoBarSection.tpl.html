@@ -1,0 +1,78 @@
+<section class="recipe-info-bar-section text-center">
+
+    <!--
+    <div layout="column" layout-xs="row" layout-align="center center">
+        <ul layout="row">
+            <li ng-repeat="star in RecipeInfoBarSectionController.ratingArray track by $index">
+                <md-icon md-font-set="iqs-icons"
+                         ng-class="{'icon-star':star == 'full', 'icon-star-half':star == 'half', 'icon-star-o':star == 'empty', }"></md-icon>
+            </li>
+        </ul>
+        <h5>{{RecipeInfoBarSectionController.recipe._ratingInfo.count || 0}} reviews</h5>
+    </div>
+    -->
+
+    <div layout="column" layout-xs="row" layout-align="center center">
+        <ul layout="row">
+            <li>
+                <md-icon class="material-icons">person</md-icon>
+            </li>
+            <li>{{RecipeInfoBarSectionController.recipe.servings}}</li>
+        </ul>
+        <h5>Servings</h5>
+    </div>
+
+    <div layout="column" layout-xs="row" layout-align="center center">
+        <ul layout="row">
+            <li>
+                <md-icon class="material-icons">schedule</md-icon>
+            </li>
+            <li>{{RecipeInfoBarSectionController.recipe.prepTime | momentDuration}}</li>
+        </ul>
+        <h5>Prep</h5>
+    </div>
+
+    <div layout="column" layout-xs="row" layout-align="center center">
+        <ul layout="row">
+            <li>
+                <md-icon class="material-icons">schedule</md-icon>
+            </li>
+            <li>{{RecipeInfoBarSectionController.recipe.cookTime | momentDuration}}</li>
+        </ul>
+        <h5>Cook</h5>
+    </div>
+
+    <div layout="column" layout-xs="row" layout-align="center center">
+        <ul layout="row">
+            <li>
+                <md-icon class="sugar-cube fa fa-cube"></md-icon>
+            </li>
+            <li>{{RecipeInfoBarSectionController.recipe.addedSugarTsps}}tsp</li>
+        </ul>
+        <h5>Per serve</h5>
+    </div>
+
+    <!--
+    <div layout="column" layout-xs="row" layout-align="center center">
+        <ul layout="row">
+            <li>
+                <md-icon md-font-set="iqs-icons icon-star-o orange"></md-icon>
+            </li>
+        </ul>
+        <h5 class="orange">Rate</h5>
+    </div>
+
+    <div layout="column" layout-xs="row" layout-align="center center">
+        <ul layout="row">
+            <li>
+                <md-icon md-font-set="iqs-icons icon-heart-o orange"></md-icon>
+            </li>
+        </ul>
+        <h5 class="orange">Favourite</h5>
+    </div>
+
+    -->
+
+    <!--<div layout="column" layout-xs="row" layout-align="center center" hide-gt-xs></div>-->
+
+</section>

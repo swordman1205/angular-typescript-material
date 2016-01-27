@@ -1,0 +1,83 @@
+@import (reference) "../../../styles/_mixins.less";
+@import (reference) "../../../styles/theme/reference/program-variables";
+@import "../../../styles/theme/reference/angular-material-theme";
+
+.feed-item {
+    &:focus {
+        outline: 0;
+    }
+
+    &.navigable {
+        .feed-content {
+            cursor: pointer;
+        }
+    }
+
+    .feed-content {
+        &:focus {
+            outline: 0;
+        }
+    }
+}
+
+section-listing {
+
+    .section-wrap {
+        margin: 0 0 1.3rem 0;
+
+        &.size-full {
+            width: 100%;
+        }
+
+        &.size-oneThird {
+            width: 33.33%;
+
+            .responsive(599px, { width: 100%; });
+
+            .alert-message,
+            .media-section {
+                .responsive(599px, { margin-left: 0 !important; margin-right: 0 !important; });
+            }
+        }
+
+        &.size-twoThird {
+            width: 66.66%;
+
+            .responsive(599px, { width: 100%; });
+
+            .alert-message,
+            .media-section {
+                .responsive(599px, { margin-left: 0 !important; margin-right: 0 !important; });
+            }
+        }
+
+        &.alignment-left:not(.size-full) {
+            float: left;
+
+            .alert-message,
+            .media-section {
+                margin: 0 20px 20px 0;
+            }
+        }
+
+        &.alignment-right:not(.size-full) {
+            float: right;
+
+            .alert-message,
+            .media-section {
+                margin: 0 0 20px 20px;
+            }
+        }
+
+        &.alignment-centre:not(.size-full) {
+            float: none;
+            margin: auto;
+
+            .alert-message,
+            .media-section {
+                margin: 0 20px 20px 20px;
+            }
+        }
+    }
+
+}

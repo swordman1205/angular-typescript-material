@@ -1,0 +1,54 @@
+<div class="recipe-method-display-directive">
+    <div class="ingredient-method">
+        <div class="ingredient">
+            <h3>INGREDIENTS</h3>
+            <div ng-repeat="group in RecipeMethodDisplayController.recipeMethodIngredients">
+                <h4 ng-if="group.group.name">{{ group.group.name }}</h4>
+                <ingredient-display
+                        ng-repeat="ingredient in group.ingredients"
+                        recipe-ingredient="ingredient"
+                        measurement-system="{{ RecipeMethodDisplayController.displayMetric ? 'metric' : 'imperial' }}"
+                        measures-enabled="RecipeMethodDisplayController.displayMeasures"
+                        include-description="true"
+                        show-as-on-recipe="!RecipeMethodDisplayController.convertIngredientValues">
+                </ingredient-display>
+            </div>
+            <md-checkbox class="convert-ingredient-values" ng-model="RecipeMethodDisplayController.convertIngredientValues"
+                         aria-label="Convert ingredient values">
+                Convert ingredient values
+            </md-checkbox>
+            <div class="button" ng-if="RecipeMethodDisplayController.convertIngredientValues">
+                <md-radio-group ng-model="RecipeMethodDisplayController.displayMetric" layout="row"
+                                ng-change="RecipeMethodDisplayController.saveDisplayPreferences()" class="md-accent">
+                    <md-radio-button ng-value="true">Metric</md-radio-button>
+                    <md-radio-button ng-value="false">Imperial</md-radio-button>
+                </md-radio-group>
+                <md-radio-group ng-model="RecipeMethodDisplayController.displayMeasures" layout="row"
+                                ng-change="RecipeMethodDisplayController.saveDisplayPreferences()" class="md-accent">
+                    <md-radio-button ng-value="false">Gms/oz</md-radio-button>
+                    <md-radio-button ng-value="true">Cups</md-radio-button>
+                </md-radio-group>
+            </div>
+        </div>
+        <div class="method">
+            <h3>METHOD</h3>
+
+            <div ng-repeat="group in RecipeMethodDisplayController.recipeMethodDirections">
+                <h4 ng-if="group.group.name && group.directionGroups.length > 0">{{ group.group.name }}</h4>
+                <div ng-repeat="subgroup in group.directionGroups">
+                    <!-- // start="number" is required to fix issue with numbering on Firefox -->
+                    <ol ng-show="subgroup.numbered" class="order-number" layout="column">
+                        <li ng-repeat="direction in subgroup.directions">
+                            {{ direction.content }}
+                        </li>
+                    </ol>
+                    <p ng-show="!subgroup.numbered" ng-repeat="direction in subgroup.directions">
+                        {{ direction.content }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

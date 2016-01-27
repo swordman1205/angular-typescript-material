@@ -1,0 +1,12 @@
+<div class="double-switch" layout="row">
+    <label ng-class="DoubleSwitchController.isActive({{DoubleSwitchController.leftValue}})">{{DoubleSwitchController.leftLabel}}</label>
+    <md-switch
+            ng-change="DoubleSwitchController.toggleSwitch()"
+            ng-model="DoubleSwitchController.ngModel"
+            ng-false-value="{{DoubleSwitchController.leftValue}}"
+            ng-true-value="{{DoubleSwitchController.rightValue}}"
+            aria-label="{{DoubleSwitchController.ariaLabel}}"
+            class="md-block">
+    </md-switch>
+    <label ng-class="DoubleSwitchController.isActive({{DoubleSwitchController.rightValue}})">{{DoubleSwitchController.rightLabel}}</label>
+</div>

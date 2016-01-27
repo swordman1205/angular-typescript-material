@@ -1,0 +1,48 @@
+<md-dialog class="recipeSelectDialog standard-dialog" aria-label="Recipe Select Dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Select Recipe</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="RecipeSelectController.closeDialog()">
+                <md-icon aria-label="Close">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <md-chips ng-model="RecipeSelectController.selectedRecipes"
+                  name="recipes"
+                  ng-model-options="{ debounce: 500 }"
+                  md-autocomplete-snap
+                  md-require-match="true">
+
+            <md-autocomplete
+                    ng-hide="RecipeSelectController.selectedRecipes.length >= 1"
+                    md-no-cache="true"
+                    md-selected-item="selectedRecipe"
+                    md-search-text="searchText"
+                    md-items="recipe in RecipeSelectController.recipeSearch(searchText)"
+                    md-item-text="recipe.title"
+                    md-selected-item-change="searchText = ''"
+                    placeholder="Search for a recipe">
+                <md-item-template>
+                    <div layout="row">
+                        <cl-image width="100%" public-id="{{recipe._thumbnailImage.imageId}}"
+                                  format="{{recipe._thumbnailImage.format}}">
+                            <cl-transformation height="50" width="50" crop="fill" gravity="north"/>
+                        </cl-image>
+                        <div>
+                            {{ recipe.title }}
+                        </div>
+                        <md-button class="md-icon-button" ng-click="RecipeSelectController.closeDialog()">
+                            <md-icon>info outline</md-icon>
+                        </md-button>
+                    </div>
+                </md-item-template>
+            </md-autocomplete>
+
+            <md-chip-template>
+                {{ $chip.title }}
+            </md-chip-template>
+        </md-chips>
+    </md-dialog-content>
+</md-dialog>

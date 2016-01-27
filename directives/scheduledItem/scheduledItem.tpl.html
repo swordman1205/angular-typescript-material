@@ -1,0 +1,79 @@
+<md-card class="scheduled-item-directive" id="{{ScheduledItemController.scheduledItem.cycleScheduleItemId}}" layout-fill layout="column">
+    <div class="image-container" ng-class="{'no-image' : !ScheduledItemController.scheduledItem._scheduledItem._thumbnailImage.imageId}">
+        <div class="image-wrapper">
+            <cl-image public-id="{{ScheduledItemController.scheduledItem._scheduledItem._thumbnailImage.imageId}}"
+                      format="{{ScheduledItemController.scheduledItem._scheduledItem._thumbnailImage.format}}">
+                <cl-transformation height="200" width="300" crop="fill" gravity="center"/>
+            </cl-image>
+        </div>
+
+        <md-icon class="schedule-type">{{ ::ScheduledItemController.isProgramPost() ? 'description' : 'school' }}</md-icon>
+        <span class="status {{ScheduledItemController.scheduledItem._scheduledItem.getStatus()}} md-caption">{{::ScheduledItemController.scheduledItem._scheduledItem.getStatus() | uppercase }}</span>
+        <md-menu md-position-mode="target-right target" class="menu">
+            <md-button aria-label="Schedule Item options" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-icon class="more-settings">more_vert</md-icon>
+            </md-button>
+            <md-menu-content width="3">
+                <md-menu-item>
+                    <md-button
+                            ng-click="ScheduledItemController.editPost()">
+                        Edit
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button
+                            ng-click="ScheduledItemController.scheduleItem()">
+                        Schedule
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button
+                            ng-click="ScheduledItemController.feedFormatting()">
+                        Feed formatting
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button
+                            ng-click="ScheduledItemController.copyTo()">
+                        Copy to
+                    </md-button>
+                </md-menu-item>
+                <md-menu-item>
+                    <md-button
+                            ng-click="ScheduledItemController.unschedule()">
+                        Unschedule
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+    </div>
+    <md-divider></md-divider>
+    <div class="content" layout="column" flex>
+        <div class="md-body-1">
+            {{ScheduledItemController.scheduledItem._scheduledItem.title | limitTo: 30}}
+        </div>
+        <div flex></div>
+        <!-- @TODO these don’t display -->
+        <div class="md-body-2" layout="row" flex="none">
+            <div class="topic" flex="50">
+                {{ScheduledItemController.scheduledItem.scheduledRelativeTo | uppercase}}
+            </div>
+            <div class="time" flex="50">
+                {{ScheduledItemController.scheduledItem.scheduleDateTime.format('h:mma')}}
+            </div>
+        </div>
+    </div>
+    <md-divider></md-divider>
+    <div>
+        <div layout="row" ng-repeat="cycleOptionType in ScheduledItemController.cycleOptionTypes" class="preference">
+            <div layout="column" ng-repeat="programOption in cycleOptionType.programOptions" ng-class="{'selected' : programOption.selected}" class="md-body-1" flex>
+                <span ng-if="cycleOptionType.programOptions.length > 2">
+                    {{ programOption.programOption.name | limitTo: 3 }}
+                </span>
+                <span ng-if="cycleOptionType.programOptions.length <= 2">
+                    {{ programOption.programOption.name }}
+                </span>
+            </div>
+        </div>
+    </div>
+</md-card>

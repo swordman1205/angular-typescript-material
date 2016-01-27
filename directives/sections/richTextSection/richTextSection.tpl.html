@@ -1,0 +1,55 @@
+<section class="rich-text-section" ng-switch="RichTextSectionController.section.format.style">
+
+    <div class="text-description" marked="RichTextSectionController.section.content.body" ng-switch-default></div>
+
+    <div class="alert-message sarah-says" ng-switch-when="sarahSays">
+        <div layout="row" layout-align="center center">
+            <div class="image">
+                <img src="/assets/images/sarah.png"/>
+            </div>
+            <div class="name">sarah says</div>
+        </div>
+        <div marked="RichTextSectionController.section.content.body" class="text-center"></div>
+    </div>
+
+    <div class="alert-message beware" ng-switch-when="beware">
+        <div layout="row" layout-align="center center">
+            <div class="image">
+                <md-icon class="material-icons">flash_on</md-icon>
+            </div>
+            <div class="name">beware</div>
+        </div>
+        <div marked="RichTextSectionController.section.content.body" class="text-center"></div>
+    </div>
+
+    <div class="alert-message know-this" ng-switch-when="knowThis">
+        <div layout="row" layout-align="center center">
+            <div class="image">
+                <md-icon class="material-icons">person</md-icon>
+            </div>
+            <div class="name">know this</div>
+        </div>
+        <div marked="RichTextSectionController.section.content.body" class="text-center"></div>
+    </div>
+
+    <div class="alert-message tip" ng-switch-when="tip">
+        <div layout="row" layout-align="center center">
+            <div class="image">
+                <md-icon class="material-icons">lightbulb_outline</md-icon>
+            </div>
+            <div class="name">tip</div>
+        </div>
+        <div marked="RichTextSectionController.section.content.body" class="text-center"></div>
+    </div>
+
+    <div class="alert-message fact" ng-switch-when="fact">
+        <div layout="row" layout-align="center center">
+            <div class="image">
+                <md-icon class="material-icons">priority_high</md-icon>
+            </div>
+            <div class="name">fact</div>
+        </div>
+        <div marked="RichTextSectionController.section.content.body" class="text-center"></div>
+    </div>
+
+</section>

@@ -1,0 +1,98 @@
+@import (reference) "../../../styles/theme/reference/admin-variables";
+
+.content-sections-input-set {
+
+    margin: -16px;
+    padding: 0;
+
+    md-card {
+        margin: 16px;
+    }
+
+    .content-sections-input-item {
+
+        md-bottom-sheet.dummy {
+            display: none;
+        }
+
+        .settings-toolbar {
+
+            color: inherit;
+
+            &.toolbar-hidden {
+                background-color: transparent;
+
+                md-icon {
+                    color: @primary-color;
+                }
+
+            }
+        }
+
+        .section-input {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+    }
+}
+
+.section-input-blockquote {
+    > div {
+        padding: 16px;
+    }
+}
+
+.section-input-media {
+
+    md-tab-content {
+        background: #f5f5f5;
+    }
+
+    md-pagination-wrapper {
+        width: auto !important;
+    }
+
+    md-tab-item {
+        span + md-icon {
+            margin-left: 6px;
+            position: relative;
+            top: -1px;
+        }
+    }
+
+    .no-video-preview {
+        border: 1px dashed #ccc;
+        color: #ccc;
+        position: relative;
+
+        &:before {
+            content: "";
+            display: block;
+            width: 100%; //desired width
+            //padding-top: 56.25%;     //ratio of 16:9
+            padding-top: 50%; //ratio of 2:1
+        }
+
+        > span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}
+
+.section-input-promo {
+    > div {
+        padding: 0 16px;
+    }
+}
+
+.section-input-rich-text {
+    md-input-container {
+        margin: 0;
+        padding: 0;
+    }
+}

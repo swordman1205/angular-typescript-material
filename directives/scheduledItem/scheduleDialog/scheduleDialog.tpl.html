@@ -1,0 +1,189 @@
+<md-dialog aria-label="Schedule Dialog" id="scheduleDialog" class="standard-dialog">
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row">
+            <h2>Schedule this item</h2>
+            <span flex></span>
+            <button class="md-icon-button md-button" ng-click="ScheduleDialogController.cancelDialog()"
+                    aria-label="Close">
+                <md-icon>close</md-icon>
+            </button>
+        </div>
+    </md-toolbar>
+    <md-dialog-content>
+        <form name="scheduleForm">
+
+            <md-radio-group ng-model="ScheduleDialogController.scheduledItem.scheduledRelativeTo">
+                <!-- These values are defined in scheduleItemModel.ts -->
+                <md-radio-button value="period">Relative to period start or end</md-radio-button>
+                <md-radio-button value="timezone">On a specific date &amp; time (timezone relative)</md-radio-button>
+                <md-radio-button value="global">On a specific date &amp; time (global)</md-radio-button>
+            </md-radio-group>
+
+            <fieldset ng-if="ScheduleDialogController.scheduledItem.scheduledRelativeTo == 'period'">
+                <legend>Relative Period</legend>
+
+
+                <div layout="row">
+                    <md-input-container flex>
+                        <label>Days</label>
+                        <input name="scheduledRelativeToPeriodDays"
+                               ng-model="ScheduleDialogController.daysRelative" type="number"
+                               ng-required="ScheduleDialogController.scheduledItem.scheduledRelativeTo == 'period'"
+                               min="0"
+                               ng-max="(ScheduleDialogController.program.periodLength * ScheduleDialogController.program.periodLength) - 1">
+                        <ng-messages for="scheduleForm.scheduledRelativeToPeriodDays.$error">
+                            <ng-message when="required">This is required.</ng-message>
+                            <ng-message when="min">The number of days must be positive.</ng-message>
+                            <ng-message when="max">The number of days must not place this item in another period.
+                            </ng-message>
+                        </ng-messages>
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row"
+                     layout="column"
+                     layout-align-gt-xs="start center">
+
+                    <md-input-container flex>
+                        <md-select ng-model="ScheduleDialogController.afterPeriodBegins"
+                                   aria-label="After Period Begins">
+                            <md-option ng-value="true">
+                                after period begins
+                            </md-option>
+                            <md-option ng-value="false">
+                                before period begins
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <md-input-container flex>
+                        <md-select ng-model="ScheduleDialogController.scheduledItem.periodIndex"
+                                   aria-label="Period Index">
+                            <md-option ng-repeat="period in ScheduleDialogController.schedule.periods"
+                                       ng-value="period.periodIndex">
+                                {{ period.periodName }}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+
+                    <div class="timepicker-container">
+                        <label layout="row">Time</label>
+                        <div>
+                            <md-button class="md-icon-button" ng-click="ScheduleDialogController.showTimePicker($event)"
+                                       aria-label="Show Time Picker">
+                                <md-icon>access_time</md-icon>
+                            </md-button>
+                            <md-input-container>
+                                <input type="text" aria-label="Time"
+                                       ng-model="ScheduleDialogController.displayDateTime.format('HH:mm')"
+                                       ng-model-options="{ getterSetter: true }">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset ng-if="ScheduleDialogController.scheduledItem.scheduledRelativeTo == 'timezone'">
+                <legend>Specific Date (Timezone)</legend>
+                <div layout="row" layout-align="start end">
+                    <div class="datepicker-container">
+                        <label>Date</label>
+                        <md-datepicker ng-model="ScheduleDialogController.displayDateTime"
+                                       md-placeholder="Date"></md-datepicker>
+                    </div>
+
+                    <div class="timepicker-container">
+                        <label>Time</label>
+                        <div layout="row">
+                            <md-button class="md-icon-button" ng-click="ScheduleDialogController.showTimePicker($event)"
+                                       aria-label="Show Time Picker">
+                                <md-icon>access_time</md-icon>
+                            </md-button>
+                            <md-input-container>
+                                <input type="text" aria-label="Time"
+                                       ng-model="ScheduleDialogController.displayDateTime.format('HH:mm')"
+                                       ng-model-options="{ getterSetter: true }">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <small>IMPORTANT! Specifically scheduled items will not be included if this schedule is copied at a
+                    later date
+                </small>
+
+            </fieldset>
+
+            <fieldset ng-if="ScheduleDialogController.scheduledItem.scheduledRelativeTo == 'global'">
+                <legend>Specific Date (Global)</legend>
+                <div layout="row" layout-align="start end">
+                    <div class="datepicker-container">
+                        <label>Date</label>
+                        <md-datepicker ng-model="ScheduleDialogController.displayDateTime"
+                                       md-placeholder="Date"
+                                       ng-change="ScheduleDialogController.setDateOffsetToZero()">
+                        </md-datepicker>
+                    </div>
+                    <div class="timepicker-container">
+                        <label>Time</label>
+                        <div layout="row">
+                            <md-button class="md-icon-button" ng-click="ScheduleDialogController.showTimePicker($event)"
+                                       aria-label="Show Time Picker">
+                                <md-icon>access_time</md-icon>
+                            </md-button>
+                            <md-input-container>
+                                <input type="text" aria-label="Time"
+                                       ng-model="ScheduleDialogController.displayDateTime.format('HH:mm')"
+                                       ng-model-options="{ getterSetter: true }">
+                            </md-input-container>
+                        </div>
+                    </div>
+                </div>
+                <md-select ng-model="ScheduleDialogController.selectedCountry"
+                           ng-disabled="!ScheduleDialogController.countries"
+                           aria-label="Countries">
+                    <md-option ng-repeat="country in ScheduleDialogController.countries"
+                               ng-value="country">
+                        {{ country.countryName }}
+                    </md-option>
+                </md-select>
+                <md-select ng-model="ScheduleDialogController.selectedTimezone"
+                           ng-disabled="!ScheduleDialogController.selectedCountry.timezones"
+                           aria-label="Timezones">
+                    <md-option ng-repeat="timezone in ScheduleDialogController.selectedCountry.timezones"
+                               ng-value="timezone">
+                        {{ timezone.timezoneIdentifier }} ({{ timezone.displayOffset }})
+                    </md-option>
+                </md-select>
+                <small>IMPORTANT! Specifically scheduled items will not be included if this schedule is copied at a
+                    later date
+                </small>
+            </fieldset>
+
+
+            <fieldset class="options">
+                <legend class="md-body-1">Who should see this item</legend>
+                <div layout="row" ng-repeat="cycleOptionType in ScheduleDialogController.cycleOptionTypes">
+                    <div layout="column" ng-repeat="programOption in cycleOptionType.programOptions">
+                        <md-button class="option" ng-class="{'md-accent' : programOption.selected, 'md-raised' : true}"
+                                   aria-label="Select {{ programOption.programOption.name }}"
+                                   ng-click="ScheduleDialogController.optionTypeSelected(programOption)">
+                            {{ programOption.programOption.name }}
+                        </md-button>
+                    </div>
+                </div>
+            </fieldset>
+
+            <md-checkbox ng-model="ScheduleDialogController.scheduledItem.stickyInFeed" aria-label="Sticky in feed">
+                Make this item sticky in the feed
+            </md-checkbox>
+
+        </form>
+    </md-dialog-content>
+    <md-dialog-actions layout="row" layout-align="end center">
+        <md-button class="md-raised md-accent" ng-disabled="scheduleForm.$invalid"
+                   ng-click="ScheduleDialogController.save()" aria-label="Save">Save
+        </md-button>
+
+        <md-button ng-click="ScheduleDialogController.cancelDialog()" aria-label="Cancel">Cancel</md-button>
+    </md-dialog-actions>
+
+</md-dialog>

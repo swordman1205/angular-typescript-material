@@ -1,0 +1,29 @@
+<div class="payment-method-directive">
+    <div ng-if="PaymentMethodController.isUsingExistingPaymentMethod">
+        <md-input-container class="md-block" ng-if="PaymentMethodController.paymentMethod.CreditCardMaskNumber">
+            <label>Using existing payment method</label>
+            <input type="text" value="{{PaymentMethodController.paymentMethod.CreditCardMaskNumber}}" disabled/>
+        </md-input-container>
+        <p class="thanks" ng-if="!PaymentMethodController.paymentMethod.CreditCardMaskNumber">Thanks for saving your payment details. We’re almost there! Review your selection below and hit “Sign me up”.</p>
+    </div>
+    <div ng-if="PaymentMethodController.isLoading()" class="loading" layout="column" layout-align="space-around">
+        <div ng-switch="PaymentMethodController.paymentStatus" flex>
+            <div ng-switch-when="loadingPortal">Loading Payment Portal…</div>
+            <div ng-switch-when="loadingSignature">Loading Signature…</div>
+            <div ng-switch-when="processingPaymentMethod">Processing Payment Method…</div>
+            <div ng-switch-when="retrievingMethod">Retrieving Payment Method…</div>
+        </div>
+        <md-progress-circular flex md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div id="zuora_payment" ng-show="PaymentMethodController.zuoraSectionVisible()"></div>
+    <div class="change-payment">
+        <md-button class="md-primary"
+                   ng-click="PaymentMethodController.changePaymentMethod()"
+                   ng-if="PaymentMethodController.isUsingExistingPaymentMethod && PaymentMethodController.allowNew">Changed your credit card details?
+        </md-button>
+        <md-button class="md-primary"
+                   ng-click="PaymentMethodController.useExistingPaymentMethod()"
+                   ng-if="PaymentMethodController.paymentMethod && !PaymentMethodController.isUsingExistingPaymentMethod">Use existing credit card details?
+        </md-button>
+    </div>
+</div>

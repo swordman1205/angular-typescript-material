@@ -1,0 +1,313 @@
+@import (reference) "../../../../styles/_mixins.less";
+@import (reference) "../../../../styles/theme/reference/program-variables";
+@import "../../../../styles/theme/reference/angular-material-theme";
+
+section.rich-text-section {
+
+    .text-description {
+        blockquote {
+            margin: 0;
+            position: relative;
+
+            p {
+                text-align: center;
+                color: @clr-iqs-green;
+                font-family: @font-lora;
+                font-size: 27px;
+                font-style: italic;
+                position: relative;
+                margin: 18px 40px 56px 40px;
+                line-height: 36px;
+                .responsive(599px, { font-size: 19px; line-height: 26px; margin: 30px 40px 46px; });
+
+                //Uses angular material icon to display the ligature of the quote
+                &:before,
+                &:after {
+                    font-family: 'Material Icons';
+                    font-weight: normal;
+                    font-style: normal;
+                    line-height: 1;
+                    letter-spacing: normal;
+                    text-transform: none;
+                    display: inline-block;
+                    white-space: nowrap;
+                    word-wrap: normal;
+                    direction: ltr;
+                    -webkit-font-feature-settings: 'liga';
+                    -webkit-font-smoothing: antialiased;
+                }
+
+                &:before {
+                    font-size: 26px;
+                    content: 'format_quote';
+                    .transform(rotate(180deg));
+                }
+
+                &:after {
+                    font-size: 26px;
+                    content: 'format_quote';
+                }
+
+                cite {
+                    &:before {
+                        content: '\2014\00a0';
+                    }
+
+                    position: absolute;
+                    bottom: -40px;
+                    text-align: center;
+                    width: 100%;
+                    display: block;
+                    font-family: @font-lora;
+                    font-size: 16px;
+                    font-style: italic;
+                    margin: 0;
+                    color: @clr-iqs-text;
+                    .responsive(599px, { font-size: 14px; });
+                }
+            }
+        }
+
+        h2, h3, h4, h5, h6 {
+            font-family: @font-franklinmedium;
+            line-height: 1.5rem;
+            margin: 1.2rem 0 .7rem 0;
+        }
+
+        h2 {
+            font-size: 22px;
+            color: @clr-iqs-aqua;
+            .responsive(599px, { font-size: 20px; });
+        }
+        h3 {
+            font-size: 20px;
+            color: @clr-iqs-purple;
+            .responsive(599px, { font-size: 18px; });
+        }
+
+        h4 {
+            font-size: 19px;
+            color: @clr-iqs-purple;
+            .responsive(599px, { font-size: 17px; });
+        }
+
+        h5 {
+            font-size: 18px;
+            .responsive(599px, { font-size: 16px; });
+        }
+
+        h6 {
+            font-size: 17px;
+            .responsive(599px, { font-size: 15px; });
+        }
+
+        p, ul, ol {
+            font-family: @font-lora;
+            font-size: 16px;
+            line-height: 1.5rem;
+        }
+
+        p {
+            margin: 0 0 1.3rem 0;
+            .responsive(599px, { font-size: 15px; });
+        }
+
+        a,
+        a:link,
+        a:visited,
+        a:hover,
+        a:active,
+        a:focus {
+            color: @clr-iqs-text;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        ul, ol {
+            margin-left: 15px;
+            padding-left: 0px;
+
+            li {
+                margin-left: 1.2em;
+                margin-bottom: 20px;
+
+                > p {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .style-standFirst &,
+    .style-standFirst & p {
+        font-size: 20px;
+        font-family: @font-lora;
+        color: @clr-iqs-purple;
+        .responsive(599px, { font-size: 18px; });
+    }
+
+    .alert-message {
+        background: @clr-iqs-red url("@{imgpath}/bg-pattern.png") top left repeat;
+        color: #ffffff;
+        display: table;
+        margin: 2.5rem 0;
+
+        a,
+        a:link,
+        a:visited,
+        a:hover,
+        a:active,
+        a:focus {
+            color: white;
+            text-decoration: underline;
+        }
+
+
+        > div {
+            .image {
+                background: @cls-iqs-light-red url("@{imgpath}/dotted-circle.png") top left no-repeat;
+                background-size: contain;
+                width: 60px;
+                height: 60px;
+                border-radius: 60px;
+                position: relative;
+                margin-right: 15px;
+            }
+
+            .name {
+                font-weight: bold;
+                font-size: 20px;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                .responsive(599px, { font-size: 18px; });
+            }
+
+            &:first-child {
+                height: 100px;
+            }
+        }
+
+        p {
+            color: #ffffff;
+            font-family: @font-lora;
+            font-size: 17px;
+            margin: 0 20px 30px;
+            .responsive(599px, { font-size: 15px; });
+        }
+
+        &.sarah-says {
+            > div {
+                .image {
+                    img {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50px;
+                    }
+                }
+            }
+        }
+
+        &.beware {
+            background: @clr-iqs-red-4 url("@{imgpath}/bg-pattern.png") top left repeat;
+
+            > div {
+
+                .image {
+                    background: @clr-iqs-red-5 url("@{imgpath}/dotted-circle.png") top left no-repeat;
+
+                    md-icon {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        background-color: white;
+                        border-radius: 50%;
+                        padding: 12px;
+                        color: @clr-iqs-red-4;
+                    }
+                }
+            }
+        }
+
+        &.know-this {
+            background: @clr-iqs-green-2 url("@{imgpath}/bg-pattern.png") top left repeat;
+
+            > div {
+
+                .image {
+                    background: @clr-iqs-green-3 url("@{imgpath}/dotted-circle.png") top left no-repeat;
+
+                    md-icon {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        background-color: white;
+                        border-radius: 50%;
+                        padding: 12px;
+                        color: @clr-iqs-green-2;
+                    }
+                }
+            }
+        }
+
+        &.tip {
+            background: @clr-iqs-purple-7 url("@{imgpath}/bg-pattern.png") top left repeat;
+
+            > div {
+
+                .image {
+                    background: @clr-iqs-purple-8 url("@{imgpath}/dotted-circle.png") top left no-repeat;
+
+                    md-icon {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        background-color: white;
+                        border-radius: 50%;
+                        padding: 12px;
+                        color: @clr-iqs-purple-7;
+                    }
+                }
+            }
+        }
+
+        &.fact {
+            background: @clr-iqs-aqua-3 url("@{imgpath}/bg-pattern.png") top left repeat;
+
+            > div {
+
+                .image {
+                    background: @clr-iqs-aqua-4 url("@{imgpath}/dotted-circle.png") top left no-repeat;
+
+                    md-icon {
+                        position: absolute;
+                        left: 0;
+                        right: 0;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        background-color: white;
+                        border-radius: 50%;
+                        padding: 12px;
+                        color: @clr-iqs-aqua-3;
+                    }
+                }
+            }
+        }
+    }
+
+}

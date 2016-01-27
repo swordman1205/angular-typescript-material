@@ -1,0 +1,56 @@
+<md-dialog aria-label="Feed Format Dialog" class="standard-dialog">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row">
+            <h2>Apply a format to this item</h2>
+            <span flex></span>
+            <button class="md-icon-button md-button" ng-click="FeedFormattingDialogController.cancelDialog()"
+                    aria-label="Close">
+                <md-icon>close</md-icon>
+            </button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <form name="feedFormattingForm">
+            <fieldset>
+                <legend>Feed Presentation</legend>
+                <div layout="column">
+                    <md-input-container>
+                        <md-select
+                                ng-model="FeedFormattingDialogController.scheduledItem.feedFormat"
+                                name="feedFormatting"
+                                required>
+                            <md-option ng-repeat="option in FeedFormattingDialogController.feedFormatOptions"
+                                       ng-value="option.key">
+                                {{ option.name }}
+                            </md-option>
+                        </md-select>
+
+                        <ng-messages for="feedFormattingForm.feedFormatting.$error">
+                            <ng-message when="required">A feed format must be selected.</ng-message>
+                        </ng-messages>
+                    </md-input-container>
+
+                    <md-checkbox ng-model="FeedFormattingDialogController.scheduledItem.stickyInFeed"
+                                 aria-label="Sticky in feed">
+                        Make this item sticky in the feed
+                    </md-checkbox>
+                </div>
+            </fieldset>
+        </form>
+    </md-dialog-content>
+
+
+    <md-dialog-actions layout="row" layout-align="end center">
+        <div>
+            <md-button class="md-raised md-accent" ng-disabled="feedFormattingForm.$invalid"
+                       ng-click="FeedFormattingDialogController.save()" aria-label="save">Save
+            </md-button>
+        </div>
+        <div>
+            <md-button ng-click="FeedFormattingDialogController.cancelDialog()" aria-label="Cancel">Cancel</md-button>
+        </div>
+    </md-dialog-actions>
+
+</md-dialog>

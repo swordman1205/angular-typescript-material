@@ -1,0 +1,26 @@
+<div layout="column"
+     layout-padding
+     class="rate-plan-display-directive"
+     ng-class="{selected: RatePlanDisplayController.isSelected}"
+     flex>
+    <div class="header">
+        <h4>{{ ::RatePlanDisplayController.ratePlan.ratePlanPortalTitle }}</h4>
+        <div ng-if="RatePlanDisplayController.ratePlan.type == 'instalments'" layout="column">
+            <div>{{ RatePlanDisplayController.displayPrice }}</div>
+            <div class="display-total-price">{{ RatePlanDisplayController.displayTotalPrice }}</div>
+        </div>
+        <div ng-if="RatePlanDisplayController.ratePlan.type == 'up-front'">
+            <div>{{ RatePlanDisplayController.displayPrice }}</div>
+        </div>
+    </div>
+    <div class="description" layout="column" layout-align="space-between center" flex>
+        <p marked="RatePlanDisplayController.ratePlan.ratePlanDescription"></p>
+        <md-checkbox class="rate-checkbox" ng-model="RatePlanDisplayController.isSelected">
+            {{ RatePlanDisplayController.getCheckboxTextBySelected() }}
+        </md-checkbox>
+    </div>
+    <span ng-if="RatePlanDisplayController.ratePlan.ratePlanBadgeTitle" class="{{RatePlanDisplayController.hasRatePlanBadge(RatePlanDisplayController.ratePlan)}}">
+        {{ ::RatePlanDisplayController.ratePlan.ratePlanBadgeTitle }}
+    </span>
+    <span ng-if="!RatePlanDisplayController.ratePlan.ratePlanBadgeTitle" class="empty">&nbsp;</span>
+</div>

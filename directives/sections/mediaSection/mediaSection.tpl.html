@@ -1,0 +1,36 @@
+<section class="media-section">
+    <div class="no-select" flex
+         ng-class="::{ 'image-swiper' : !MediaSectionController.isSingleImage(), 'single-image' : MediaSectionController.isSingleImage() }">
+        <div class="image-view" md-swipe-left="MediaSectionController.onSwipeLeft()"
+             md-swipe-right="MediaSectionController.onSwipeRight()">
+
+            <div ng-repeat="media in MediaSectionController.section.content.media" ng-show="MediaSectionController.selectedIndex == $index">
+                <div ng-switch="media.type" class="media-content">
+                    <div ng-switch-when="image">
+                        <img src="{{MediaSectionController.getClImageSrc(media._image.imageId, media._image.format)}}">
+                    </div>
+
+                    <div ng-switch-when="video">
+                        <video-embed provider="{{media.provider}}"
+                                     video-id="{{media.videoId}}">
+                        </video-embed>
+                    </div>
+                </div>
+                <div class="caption" ng-if="!!media.caption">
+                    <span>{{media.caption}}</span>
+                </div>
+            </div>
+
+        </div>
+        <ul class="pagination" layout="row" layout-align="center center" hide-xs
+            ng-if="MediaSectionController.section.content.media.length > 1">
+            <li ng-repeat="media in MediaSectionController.section.content.media" layout-align="center center">
+                <md-button class="md-icon-button"
+                           ng-class="{selected:MediaSectionController.selectedIndex == $index, deselected: MediaSectionController.selectedIndex != $index}"
+                           aria-label="Select Media"
+                           ng-click="MediaSectionController.swipeToImage($index)"></md-button>
+            </li>
+        </ul>
+    </div>
+
+</section>
